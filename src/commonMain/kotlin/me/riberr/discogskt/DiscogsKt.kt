@@ -153,7 +153,7 @@ class DiscogsKt private constructor(
 
         private fun getUserAgent(s: String?): String {
             // todo: get version from build.gradle.kts
-            return s ?: "DiscogsKtClient/0.0.1}"
+            return if (s.isNullOrBlank()) "DiscogsKtClient/0.0.1}" else s
         }
     }
 }
