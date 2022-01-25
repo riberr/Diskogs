@@ -13,7 +13,7 @@ class DiscogsKtTest {
 
     @Test
     fun testGetRating() = runBlockingTest {
-        val client = DiscogsKt.create("FooBarApp/3.0")
+        val client = DiscogsKt.create()
         launch {
             val result = client.database.getUserRating(249504, "memory")
             println(result)

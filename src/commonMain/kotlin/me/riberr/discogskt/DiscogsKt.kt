@@ -62,29 +62,35 @@ class DiscogsKt private constructor(
         }
     }
 
+
     fun close() {
         client.close()
     }
 
     companion object {
         suspend fun requestTokenOauth(
-            userAgent: String,
+            userAgent: String? = null,
             consumerKey: String,
             consumerSecret: String,
             callback: String = ""
         ): Result<RequestToken> {
-            return requestToken(userAgent, consumerKey, consumerSecret, callback)
+            return requestToken(
+                getUserAgent(userAgent),
+                consumerKey,
+                consumerSecret,
+                callback
+            )
         }
 
         suspend fun accessTokenOauth(
-            userAgent: String,
+            userAgent: String? = null,
             consumerKey: String,
             consumerSecret: String,
             requestToken: RequestToken,
             verifierKey: String
         ): Result<AccessToken> {
             return accessToken(
-                userAgent,
+                getUserAgent(userAgent),
                 consumerKey,
                 consumerSecret,
                 requestToken,
@@ -93,32 +99,35 @@ class DiscogsKt private constructor(
         }
 
         fun create(
-            userAgent: String,
+            userAgent: String? = null,
             logLevel: LogLevel = LogLevel.NONE
         ): DiscogsKt {
-            return DiscogsKt(userAgent, logLevel = logLevel)
+            return DiscogsKt(
+                getUserAgent(userAgent),
+                logLevel = logLevel
+            )
         }
 
         fun create(
-            userAgent: String,
+            userAgent: String? = null,
             userToken: String,
             logLevel: LogLevel = LogLevel.NONE
         ): DiscogsKt {
             return DiscogsKt(
-                userAgent,
+                getUserAgent(userAgent),
                 userToken = userToken,
                 logLevel = logLevel
             )
         }
 
         fun create(
-            userAgent: String,
+            userAgent: String? = null,
             consumerKey: String,
             consumerSecret: String,
             logLevel: LogLevel = LogLevel.NONE
         ): DiscogsKt {
             return DiscogsKt(
-                userAgent,
+                getUserAgent(userAgent),
                 consumerKey = consumerKey,
                 consumerSecret = consumerSecret,
                 logLevel = logLevel
@@ -126,20 +135,25 @@ class DiscogsKt private constructor(
         }
 
         fun create(
-            userAgent: String,
+            userAgent: String? = null,
             consumerKey: String,
             consumerSecret: String,
             accessToken: AccessToken,
             logLevel: LogLevel = LogLevel.NONE
         ): DiscogsKt {
             return DiscogsKt(
-                userAgent,
+                getUserAgent(userAgent),
                 consumerKey = consumerKey,
                 consumerSecret = consumerSecret,
                 oauthToken = accessToken.oauthToken,
                 oauthTokenSecret = accessToken.oauthTokenSecret,
                 logLevel = logLevel
             )
+        }
+
+        private fun getUserAgent(s: String?): String {
+            // todo: get version from build.gradle.kts
+            return s ?: "DiscogsKtClient/0.0.1}"
         }
     }
 }
