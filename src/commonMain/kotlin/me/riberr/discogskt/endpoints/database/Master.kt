@@ -2,7 +2,6 @@ package me.riberr.discogskt.endpoints.database
 
 import io.ktor.client.request.*
 import me.riberr.discogskt.endpoints.Database
-import me.riberr.discogskt.endpoints.User
 import me.riberr.discogskt.models.response.database.MasterReleaseVersions
 import me.riberr.discogskt.models.response.database.MasterRelease
 import me.riberr.discogskt.util.get
@@ -13,7 +12,7 @@ suspend fun Database.getMasterRelease(
     return discogsKt.client.get("/masters/$masterId")
 }
 
-suspend fun User.getMasterReleaseVersions(
+suspend fun Database.getMasterReleaseVersions(
     masterId: Int,
     format: String? = null,
     label: String? = null,

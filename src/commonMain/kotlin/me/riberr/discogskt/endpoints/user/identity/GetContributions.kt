@@ -1,11 +1,11 @@
-package me.riberr.discogskt.endpoints.user
+package me.riberr.discogskt.endpoints.user.identity
 
 import io.ktor.client.request.*
-import me.riberr.discogskt.endpoints.User
-import me.riberr.discogskt.models.response.user.Contributions
+import me.riberr.discogskt.endpoints.user.Identity
+import me.riberr.discogskt.models.response.user.identity.Contributions
 import me.riberr.discogskt.util.get
 
-suspend fun User.getContributions(
+suspend fun Identity.getContributions(
     username: String,
     sort: Contributions.Sort? = null,
     sortOrder: Contributions.SortOrder? = null,

@@ -1,9 +1,9 @@
-package me.riberr.discogskt.models.request.user
+package me.riberr.discogskt.models.request.user.identity
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class EditProfileReq(
+data class PostProfile(
     val username: String,
     val name: String?,
     val homePage: String?,

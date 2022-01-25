@@ -7,30 +7,22 @@ import io.ktor.http.*
 suspend inline fun <reified T> HttpClient.get(
     urlString: String,
     block: HttpRequestBuilder.() -> Unit = {}
-): Result<T> {
-    return this.request(urlString, HttpMethod.Get, block)
-}
+): Result<T> = this.request(urlString, HttpMethod.Get, block)
 
 suspend inline fun <reified T> HttpClient.post(
     urlString: String,
     block: HttpRequestBuilder.() -> Unit = {}
-): Result<T> {
-    return this.request(urlString, HttpMethod.Post, block)
-}
+): Result<T> = this.request(urlString, HttpMethod.Post, block)
 
 suspend inline fun <reified T> HttpClient.put(
     urlString: String,
     block: HttpRequestBuilder.() -> Unit = {}
-): Result<T> {
-    return this.request(urlString, HttpMethod.Put, block)
-}
+): Result<T> = this.request(urlString, HttpMethod.Put, block)
 
 suspend inline fun <reified T> HttpClient.delete(
     urlString: String,
     block: HttpRequestBuilder.() -> Unit = {}
-): Result<T> {
-    return this.request(urlString, HttpMethod.Delete, block)
-}
+): Result<T> = this.request(urlString, HttpMethod.Delete, block)
 
 suspend inline fun <reified T> HttpClient.request(
     urlString: String,
@@ -38,10 +30,12 @@ suspend inline fun <reified T> HttpClient.request(
     block: HttpRequestBuilder.() -> Unit = {}
 ): Result<T> {
     return try {
-        Result.success(this.request(urlString) {
-            method = httpMethod
-            block()
-        } as T)
+        Result.success(
+            this.request(urlString) {
+                method = httpMethod
+                block()
+            } as T
+        )
     } catch (err: Exception) {
         Result.failure(err)
     }

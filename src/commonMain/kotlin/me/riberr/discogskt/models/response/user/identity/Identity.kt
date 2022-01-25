@@ -1,4 +1,4 @@
-package me.riberr.discogskt.models.response.user
+package me.riberr.discogskt.models.response.user.identity
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

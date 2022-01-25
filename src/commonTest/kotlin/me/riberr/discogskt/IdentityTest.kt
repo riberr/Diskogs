@@ -2,17 +2,17 @@ package me.riberr.discogskt
 
 import kotlinx.coroutines.launch
 import me.riberr.discogskt.endpoints.user
-import me.riberr.discogskt.endpoints.user.*
-import me.riberr.discogskt.models.pagination.PaginationReq
-import me.riberr.discogskt.models.response.user.Contributions
+import me.riberr.discogskt.endpoints.user.identity
+import me.riberr.discogskt.endpoints.user.identity.*
+import me.riberr.discogskt.models.response.user.identity.Contributions
 import kotlin.test.Test
 
-class UserTest {
+class IdentityTest {
     @Test
     fun testGetProfileWithAuth() = runBlockingTest {
         val client = DiscogsKt.create("FooBarApp/3.0", "LTeJblSyJhrUMrOrKyEeJHAYxYWnfiCWDIOBnwfu")
         launch {
-            val result = client.user.getProfile("ittakkva")
+            val result = client.user.identity.getProfile("ittakkva")
             println(result)
         }
     }
@@ -21,7 +21,7 @@ class UserTest {
     fun testGetProfile() = runBlockingTest {
         val client = DiscogsKt.create("FooBarApp/3.0")
         launch {
-            val result = client.user.getProfile("rodneyfool")
+            val result = client.user.identity.getProfile("rodneyfool")
             println(result)
         }
     }
@@ -30,7 +30,7 @@ class UserTest {
     fun testEditProfile() = runBlockingTest {
         val client = DiscogsKt.create("FooBarApp/3.0", "LTeJblSyJhrUMrOrKyEeJHAYxYWnfiCWDIOBnwfu")
         launch {
-            val result = client.user.editProfile("ittakkva", location = "Sweden")
+            val result = client.user.identity.postProfile("ittakkva", location = "Sweden")
             println(result)
         }
     }
@@ -39,7 +39,7 @@ class UserTest {
     fun testGetIdentity() = runBlockingTest {
         val client = DiscogsKt.create("FooBarApp/3.0", "LTeJblSyJhrUMrOrKyEeJHAYxYWnfiCWDIOBnwfu")
         launch {
-            val result = client.user.getIdentity()
+            val result = client.user.identity.getIdentity()
             println(result)
         }
     }
@@ -48,7 +48,7 @@ class UserTest {
     fun testGetSubmissions1() = runBlockingTest {
         val client = DiscogsKt.create("FooBarApp/3.0")
         launch {
-            val result = client.user.getSubmissions("shooezgirl")
+            val result = client.user.identity.getSubmissions("shooezgirl")
             println(result)
         }
     }
@@ -57,7 +57,7 @@ class UserTest {
     fun testGetSubmissions2() = runBlockingTest {
         val client = DiscogsKt.create("FooBarApp/3.0")
         launch {
-            val result = client.user.getSubmissions("mossss", 1, 100)
+            val result = client.user.identity.getSubmissions("mossss", 1, 100)
             println(result)
         }
     }
@@ -66,7 +66,7 @@ class UserTest {
     fun testGetContributions() = runBlockingTest {
         val client = DiscogsKt.create("FooBarApp/3.0")
         launch {
-            val result = client.user.getContributions(
+            val result = client.user.identity.getContributions(
                 "mossss",
                 sort = Contributions.Sort.ARTIST,
                 page = 1,

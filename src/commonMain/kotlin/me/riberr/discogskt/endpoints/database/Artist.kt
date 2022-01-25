@@ -1,10 +1,16 @@
 package me.riberr.discogskt.endpoints.database
 
 import io.ktor.client.request.*
+import io.ktor.client.statement.*
 import me.riberr.discogskt.endpoints.Database
 import me.riberr.discogskt.models.response.database.Artist
 import me.riberr.discogskt.models.response.database.ArtistReleases
 import me.riberr.discogskt.util.get
+
+/*
+    val response: HttpResponse = client.get(url)
+    val myObject: MyObject = response.receive<MyObject>()
+ */
 
 suspend fun Database.getArtist(artistId: Int): Result<Artist> {
     return discogsKt.client.get("/artists/$artistId")

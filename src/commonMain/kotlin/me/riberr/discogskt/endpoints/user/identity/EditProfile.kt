@@ -1,12 +1,12 @@
-package me.riberr.discogskt.endpoints.user
+package me.riberr.discogskt.endpoints.user.identity
 
 import io.ktor.http.*
-import me.riberr.discogskt.endpoints.User
-import me.riberr.discogskt.models.request.user.EditProfileReq
-import me.riberr.discogskt.models.response.user.Profile
+import me.riberr.discogskt.endpoints.user.Identity
+import me.riberr.discogskt.models.request.user.identity.PostProfile
+import me.riberr.discogskt.models.response.user.identity.Profile
 import me.riberr.discogskt.util.post
 
-suspend fun User.editProfile(
+suspend fun Identity.postProfile(
     username: String,
     name: String? = null,
     homePage: String? = null,
@@ -16,7 +16,7 @@ suspend fun User.editProfile(
 ): Result<Profile> {
     return discogsKt.client.post("/users/$username") {
         contentType(ContentType.Application.Json)
-        body = EditProfileReq(username, name, homePage, location, profile, currAbbr)
+        body = PostProfile(username, name, homePage, location, profile, currAbbr)
     }
 }
 

@@ -1,4 +1,4 @@
-package me.riberr.discogskt.models.response.user
+package me.riberr.discogskt.models.response.user.identity
 
 import kotlinx.serialization.Serializable
 import me.riberr.discogskt.models.pagination.Pagination
