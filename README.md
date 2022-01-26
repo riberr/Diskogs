@@ -1,5 +1,10 @@
 # DiscogsKt - API wrapper for Discogs in Kotlin Multiplatform
 
+DiscogsKt is a kotlin multiplatform project supporting the following targets:
+* JVM (8 or later) and Android (API level 22 or later)
+* JavaScript
+* Native, although probably not iOS
+
 ## Todo
 json mode  
 better fault handling  
@@ -16,12 +21,24 @@ rate limit handling
 - [ ] Inventory export
 - [ ] User collection
 - [ ] User wantlist
-- [ ] User List
+- [x] User List
 
 ## Get started
 
 ### Gradle
-todo
+
+#### build.gradle.kts:
+
+```kotlin
+dependencies {
+    implementation("me.riberr.discogskt:DiscogsKt:$DiscogsKtVersion")
+    
+    // Choose an engine that supports your target(s):
+    // https://ktor.io/clients/http-client/engines.html
+    // The version should match the version DiscogsKt is using
+    implementation("io.ktor:ktor-client-cio:$KtorVersion")
+}
+```
 
 ## Usage
 
@@ -30,7 +47,7 @@ Create your client:
 val discogsKt = DiscogsKt.create("MyUserAgent/1.0")
 ```
 
-As per Discogs documentation, your application must provide a user agent that identifies itself. Make it unique and preferably follow RFC 1945:
+As per Discogs documentation, your application must provide a user-agent that identifies itself. Make it unique and preferably follow [RFC 1945](https://datatracker.ietf.org/doc/html/rfc1945#section-3.7).
 
 Make some requests:
 ```kotlin
@@ -64,9 +81,7 @@ The following example shows how to authorize using OAuth 1.0:
 ```kotlin
 // This particular example is written in kotlin/jvm 
 suspend fun main(args: Array<String>) {
-    // Your application must provide a User-Agent string that identifies itself,
-    // preferably something that follows RFC 1945:
-    // https://datatracker.ietf.org/doc/html/rfc1945#section-3.7
+    // Your application must provide a User-Agent string that identifies itself
     val userAgent: String = args[0]
 
     // Application registration can be found here: https://www.discogs.com/settings/developers
@@ -109,4 +124,4 @@ For more information, see: https://www.discogs.com/developers#page:authenticatio
 
 ## Resources
 https://www.discogs.com/developers#page:home   
-https://ktor.io/docs/welcome.html   
+https://ktor.io/docs/welcome.html

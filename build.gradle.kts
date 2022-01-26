@@ -53,7 +53,6 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api("io.ktor:ktor-client-core:$ktorVersion")
-                //api("io.ktor:ktor-client-auth:$ktorVersion")
                 api("io.ktor:ktor-client-serialization:$ktorVersion")
                 api("io.ktor:ktor-client-logging:$ktorVersion")
                 api("ch.qos.logback:logback-classic:1.2.10")
@@ -63,27 +62,13 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                //implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
             }
         }
-        val jvmMain by getting {
-            dependencies {
-                implementation("io.ktor:ktor-client-cio:$ktorVersion")
-            }
-        }
+        val jvmMain by getting
         val jvmTest by getting
-        val jsMain by getting {
-            dependencies {
-                implementation("io.ktor:ktor-client-js:$ktorVersion")
-            }
-        }
+        val jsMain by getting
         val jsTest by getting
-        val nativeMain by getting {
-            dependencies {
-                // todo: install libcurl
-                //implementation("io.ktor:ktor-client-curl:$ktorVersion")
-            }
-        }
+        val nativeMain by getting
         val nativeTest by getting
     }
 }
