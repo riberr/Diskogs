@@ -1,1 +1,1 @@
-rootProject.name = "DiscogsKt"
+rootProject.name = "diskogs"

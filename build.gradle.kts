@@ -4,9 +4,8 @@ plugins {
     id("maven-publish")
 }
 
-group = "me.riberr.discogskt"
-//group = "com.github.riberr"
-version = "0.0.1"
+group = "me.riberr.diskogs"
+version = "0.0.1"//project.property("VERSION_NAME") as String
 
 repositories {
     mavenCentral()
